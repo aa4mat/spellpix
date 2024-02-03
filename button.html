@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+        <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    </head>
+<style>
+    button {
+    background: transparent;
+    border: none;
+    margin: 30px auto 0;
+    display: block;
+    font-size: 20px;
+    outline: none;
+    position: relative;
+    transition: 0.3s;
+    padding: 10px;
+  }
+  button:before {
+    content: '';
+    border-bottom: 1px solid #000;
+    padding: 0 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    transition: 0.3s;
+  }
+  button:hover:before {
+    width: 100%;
+    padding: 0;
+  }
+  button:active {
+    background: #000;
+    color: #fff;
+    transition: none;
+  }
+</style>
+<body>
+
+    <script type="py" src="./spell_check.py" config="./pyscript.json">
+        import textblob
+        import json
+        sentence = ['inconsistn teqnique', 'rugh estimite']
+        word_list = []
+        for item in sentence:
+            word_list.append("")
+            for char in item:
+                if (ord(char) > 64 and ord(char) < 91) or (ord(char) > 96 and ord(char) < 123):
+                    word_list[-1] = word_list[-1] + char
+                else:
+                    word_list.append("")
+    
+        textblob_objects = list()
+        incorrect_words = list()
+        for word in word_list:
+            incorrect_words.append(word)
+            textblob_objects.append(textblob.TextBlob(word))
+
+        data = {}
+        for i in range(len(textblob_objects)):
+            data[incorrect_words[i]] = str(textblob_objects[i].correct())
+
+        with open('data.json', 'w') as f:
+            json.dump(data, f)
+    </script>
+    <button type="button">
+        
+    </button>
+</body>
+</html>
