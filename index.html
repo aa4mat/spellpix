@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Get started with Add-on development using JavaScript" />
+        <meta name="keywords" content="Adobe, Express, Add-On, JavaScript" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Get Started</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+
+            .container {
+                margin: 24px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            button {
+                background-color: rgb(64, 70, 202);
+                border-color: rgb(64, 70, 202);
+                border-radius: 16px;
+                border-style: solid;
+                color: rgb(255, 255, 255);
+                font-family: sans-serif;
+                height: 32px;
+            }
+
+            button:disabled {
+                background-color: rgb(177, 177, 177);
+                border-color: rgb(177, 177, 177);
+            }
+
+            button:not([disabled]):hover {
+                background-color: rgb(64, 70, 202);
+                cursor: pointer;
+            }
+
+            /* This style will hide the file input from view */
+            #imageInput {
+                display: none;
+            }
+
+            #clickMe {
+                font-family: 'Roboto', sans-serif;
+            }
+
+        </style>
+        
+    </head>
+    <body>   
+        <input type="file" id="imageInput" accept="image/*">
+        <!-- 
+            Please note that this document does not use the spectrum web components theme for Express.
+            You may use "addOnUISdk.app.ui.theme" to get the current theme and style accordingly.
+        --> 
+        <div class="container">
+            <button id="clickMe" disabled>Upload Image</button>
+        </div>
+        
+        <script type="module" src="index.js"></script>
+    </body>
+</html>
