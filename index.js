@@ -28,4 +28,23 @@ addOnUISdk.ready.then(() => {
 
     // Optionally, disable the button initially and enable it after specific conditions are met
     clickMeButton.disabled = false;
+
+    // Function to convert array to sentence
+    function arrayToSentence(arr) {
+        return arr.reduce((sentence, word, index) => {
+            if (word.match(/^[.,!?;]$/) && index !== 0) {
+                return sentence.trim() + word + ' ';
+            } else {
+                return sentence + word + ' ';
+            }
+        }, '').trim();
+    }
+
+    // Example usage
+    const wordsArray1 = ['This', 'is', 'box1', '.'];
+    const wordsArray2 = ['This', 'is', 'box2', ',', 'with', 'another', 'sentence', '.'];
+
+    document.getElementById('box1').textContent = arrayToSentence(wordsArray1);
+    document.getElementById('box2').textContent = arrayToSentence(wordsArray2);
+    
 });
